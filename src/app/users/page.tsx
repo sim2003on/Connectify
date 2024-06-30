@@ -1,5 +1,5 @@
 import React from 'react';
-import { EmptyState } from '../components/empty-state';
+import EmptyState from '../../components/empty-state';
 
 const Users: React.FC = () => {
 	return (

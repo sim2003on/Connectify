@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/app/components/button';
-import { Input } from '@/app/components/inputs/input';
+import { Button } from '@/components/button';
+import { Input } from '@/components/inputs/input';
 import axios from 'axios';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -143,18 +143,30 @@ export const AuthForm: React.FC = () => {
 							<div className='w-full border-t border-gray-300' />
 						</div>
 						<div className='relative flex justify-center text-sm'>
-							<span className='bg-white px-2 text-gray-500'>Or continue with</span>
+							<span className='bg-white px-2 text-gray-500'>
+								Or continue with
+							</span>
 						</div>
 					</div>
 				</div>
 
 				<div className='mt-6 flex gap-2'>
-					<AuthSocialButton icon={BsGithub} onClick={() => socialAction('github')} />
-					<AuthSocialButton icon={BsGoogle} onClick={() => socialAction('google')} />
+					<AuthSocialButton
+						icon={BsGithub}
+						onClick={() => socialAction('github')}
+					/>
+					<AuthSocialButton
+						icon={BsGoogle}
+						onClick={() => socialAction('google')}
+					/>
 				</div>
 
 				<div className='flex gap-2 justify-center mt-6 px-2 text-center text-sm text-gray-500'>
-					<div>{variant === 'LOGIN' ? 'New to Connectify?' : 'Already have an account?'}</div>
+					<div>
+						{variant === 'LOGIN'
+							? 'New to Connectify?'
+							: 'Already have an account?'}
+					</div>
 					<div onClick={toggleVariant} className='underline cursor-pointer'>
 						{variant === 'LOGIN' ? 'Create an account' : 'Login'}
 					</div>

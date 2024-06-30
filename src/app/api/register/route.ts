@@ -1,4 +1,4 @@
-import prisma from '@/app/libs/prisma-db';
+import prisma from '@/libs/prisma-db';
 import { hash } from 'argon2';
 import { NextResponse } from 'next/server';
 

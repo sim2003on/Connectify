@@ -1,6 +1,6 @@
 'use client';
 
-import { useRoutes } from '@/app/hooks/use-routes';
+import { useRoutes } from '@/hooks/use-routes';
 import { User } from '@prisma/client';
 import React from 'react';
 import { Avatar } from '../avatar';
