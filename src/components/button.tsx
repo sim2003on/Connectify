@@ -5,7 +5,7 @@ import React from 'react';
 
 interface ButtonProps {
 	className?: string;
-	type: 'button' | 'submit' | 'reset' | undefined;
+	type?: 'button' | 'submit' | 'reset' | undefined;
 	onClick?: () => void;
 	fullWidth?: boolean;
 	children?: React.ReactNode;
@@ -34,8 +34,11 @@ export const Button: React.FC<ButtonProps> = ({
 				disabled && 'opacity-50 cursor-not-allowed',
 				fullWidth && 'w-full',
 				secondary ? 'text-gray-900' : 'text-white',
-				danger && 'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600',
-				!secondary && !danger && 'bg-sky-600 hover:bg-sky-700 focus-visible:outline-sky-700',
+				danger &&
+					'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600',
+				!secondary &&
+					!danger &&
+					'bg-sky-600 hover:bg-sky-700 focus-visible:outline-sky-700',
 			)}
 		>
 			{children}
