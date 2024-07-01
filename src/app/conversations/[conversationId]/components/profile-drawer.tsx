@@ -3,6 +3,7 @@
 import { Avatar } from '@/components/avatar';
 import AvatarGroup from '@/components/avatar-group';
 import Modal from '@/components/modal';
+import useActiveList from '@/hooks/use-active-list';
 import { useOtherUser } from '@/hooks/use-other-user';
 import {
 	Dialog,
@@ -38,12 +39,16 @@ const ProfileDrawer: React.FC<IProfileDrawerProps> = ({
 		return data.name || otherUser.name;
 	}, [data.name, otherUser.name]);
 
+	const { members } = useActiveList();
+
+	const isActive = members.indexOf(otherUser?.email!) !== -1;
+
 	const statusText = React.useMemo(() => {
 		if (data.isGroup) {
 			return `${data.users.length} members`;
 		}
 
-		return 'Active';
+		return isActive ? 'Online' : 'Offline';
 	}, [data]);
 
 	if (!otherUser) {

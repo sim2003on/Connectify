@@ -1,3 +1,4 @@
+import ActiveStatus from '@/components/active-status';
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
 import { AuthContext } from '../context/auth-context';
@@ -23,6 +24,8 @@ export default function RootLayout({
 			<body className={rubik.className}>
 				<AuthContext>
 					<ToasterContext />
+
+					<ActiveStatus />
 					{children}
 				</AuthContext>
 			</body>

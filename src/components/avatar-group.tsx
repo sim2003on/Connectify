@@ -27,7 +27,7 @@ const AvatarGroup: React.FC<IAvatarGroupProps> = ({ users = [] }) => {
 					}`}
 				>
 					<Image
-						src={user?.image || '/assets/images/placeholder.jpg'}
+						src={user?.image || '/assets/images/placeholder.png'}
 						alt='Avatar'
 						fill
 						className='object-cover w-full h-full'
