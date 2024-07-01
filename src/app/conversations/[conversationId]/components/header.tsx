@@ -7,6 +7,7 @@ import Link from 'next/link';
 import React from 'react';
 import { HiChevronLeft } from 'react-icons/hi';
 import { HiEllipsisHorizontal } from 'react-icons/hi2';
+import ProfileDrawer from './profile-drawer';
 
 interface IHeaderProps {
 	conversation: Conversation & {
@@ -17,6 +18,8 @@ interface IHeaderProps {
 const Header: React.FC<IHeaderProps> = ({ conversation }) => {
 	const otherUser = useOtherUser(conversation);
 
+	const [drawerOpen, setDrawerOpen] = React.useState(false);
+
 	const statusText = React.useMemo(() => {
 		if (conversation.isGroup) {
 			return `${conversation.users.length} members`;
@@ -24,8 +27,14 @@ const Header: React.FC<IHeaderProps> = ({ conversation }) => {
 		return 'active';
 	}, [conversation]);
 	return (
-		<div
-			className='
+		<>
+			<ProfileDrawer
+				data={conversation}
+				isOpen={drawerOpen}
+				onClose={() => setDrawerOpen(false)}
+			/>
+			<div
+				className='
 		bg-white
 		w-full
 		flex
@@ -38,29 +47,30 @@ const Header: React.FC<IHeaderProps> = ({ conversation }) => {
 		items-center
 		shadow-sm
 	'
-		>
-			<div className='flex gap-3 items-center'>
-				<Link
-					className='lg:hidden block text-sky-500
+			>
+				<div className='flex gap-3 items-center'>
+					<Link
+						className='lg:hidden block text-sky-500
 				hover:text-sky-600 transition cursor-pointer'
-					href='/conversations'
-				>
-					<HiChevronLeft size={32} />
-				</Link>
-				<Avatar user={otherUser} />
-				<div className='flex flex-col'>
-					<div>{conversation.name || otherUser.name}</div>
-					<div className='text-sm font-light text-neutral-500'>
-						{statusText}
+						href='/conversations'
+					>
+						<HiChevronLeft size={32} />
+					</Link>
+					<Avatar user={otherUser} />
+					<div className='flex flex-col'>
+						<div>{conversation.name || otherUser.name}</div>
+						<div className='text-sm font-light text-neutral-500'>
+							{statusText}
+						</div>
 					</div>
 				</div>
+				<HiEllipsisHorizontal
+					onClick={() => setDrawerOpen(true)}
+					className='text-sky-500 hover:text-sky-600 transition cursor-pointer'
+					size={32}
+				/>
 			</div>
-			<HiEllipsisHorizontal
-				onClick={() => {}}
-				className='text-sky-500 hover:text-sky-600 transition cursor-pointer'
-				size={32}
-			/>
-		</div>
+		</>
 	);
 };
 
