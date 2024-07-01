@@ -1,6 +1,7 @@
 'use client';
 
 import { Avatar } from '@/components/avatar';
+import AvatarGroup from '@/components/avatar-group';
 import { useOtherUser } from '@/hooks/use-other-user';
 import { FullConversationType } from '@/types';
 import { Conversation, Message, User } from '@prisma/client';
@@ -69,7 +70,12 @@ const ConversationBox: React.FC<IConversationBoxProps> = ({
 				selected ? 'bg-neutral-100' : 'bg-white',
 			)}
 		>
-			<Avatar user={otherUser} />
+			{data.isGroup ? (
+				<AvatarGroup users={data.users} />
+			) : (
+				<Avatar user={otherUser} />
+			)}
+
 			<div className='min-w-0 flex-1'>
 				<div className='focus:outline-none'>
 					<div className='flex justify-between items-center mb-1'>

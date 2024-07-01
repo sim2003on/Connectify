@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import React from 'react';
 import { RiCheckDoubleFill } from 'react-icons/ri';
+import ImageModal from './image-modal';
 
 interface IMessageBoxProps {
 	data: FullMessageType;
@@ -14,6 +15,7 @@ interface IMessageBoxProps {
 
 const MessageBox: React.FC<IMessageBoxProps> = ({ data, isLast }) => {
 	const session = useSession();
+	const [imageModalOpen, setImageModalOpen] = React.useState(false);
 
 	const isOwn = session.data?.user?.email === data?.sender?.email;
 	const seenList = (data.seen || [])
@@ -47,8 +49,14 @@ const MessageBox: React.FC<IMessageBoxProps> = ({ data, isLast }) => {
 					</div>
 				</div>
 				<div className={message}>
+					<ImageModal
+						src={data.image}
+						isOpen={imageModalOpen}
+						onClose={() => setImageModalOpen(false)}
+					/>
 					{data.image ? (
 						<Image
+							onClick={() => setImageModalOpen(true)}
 							alt='Image'
 							height={288}
 							width={288}

@@ -2,8 +2,10 @@
 
 import { Button } from '@/components/button';
 import Modal from '@/components/modal';
+
 import { useConversation } from '@/hooks/use-conversation';
 import { DialogTitle } from '@headlessui/react';
+
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -26,7 +28,12 @@ const ConfirmModal: React.FC<IConfirmModalProps> = ({ isOpen, onClose }) => {
 
 		axios
 			.delete(`/api/conversations/${conversationId}`)
-			.then(() => {
+			.then((data) => {
+				toast.success(
+					data.data.delatedConversation.isGroup
+						? 'Group deleted'
+						: 'Conversation deleted',
+				);
 				router.push('/conversations');
 				router.refresh();
 			})
@@ -58,7 +65,7 @@ const ConfirmModal: React.FC<IConfirmModalProps> = ({ isOpen, onClose }) => {
 					</div>
 				</div>
 			</div>
-			<div className='mt-5 sm:mt-4 sm:flex sm:flex-row-reverse'>
+			<div className='mt-5 gap-5 sm:mt-4 sm:flex sm:flex-row-reverse'>
 				<Button disabled={isLoading} danger onClick={onDelete}>
 					Delete
 				</Button>

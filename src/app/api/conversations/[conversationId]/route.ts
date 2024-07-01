@@ -32,7 +32,7 @@ export async function DELETE(
 			return new NextResponse('Invalid ID', { status: 400 });
 		}
 
-		const delatedConversation = await prisma.conversation.deleteMany({
+		const delatedConversation = await prisma.conversation.delete({
 			where: {
 				id: conversationId,
 				userIds: {

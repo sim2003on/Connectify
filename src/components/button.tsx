@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import React from 'react';
 
 interface ButtonProps {
-	className?: string;
 	type?: 'button' | 'submit' | 'reset' | undefined;
 	onClick?: () => void;
 	fullWidth?: boolean;
@@ -17,7 +16,6 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({
 	type,
 	fullWidth,
-	className,
 	onClick,
 	children,
 	secondary,
